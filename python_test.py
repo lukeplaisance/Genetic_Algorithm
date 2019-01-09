@@ -11,6 +11,9 @@ class Expression(object):
         for character in expression:
             if character not in self.symbols:
                 self.literals.append(character)
+                self.literals = list(set(self.literals))
+                self.literals.sort()
+               
 
         print (self.literals)
 
