@@ -3,16 +3,23 @@
 class Expression(object):
     def __init__(self, expression):
         self.symbols = ["!", "+", "*", "(", ")", " "]
-        
-        "(!a + c) * (!a + c + !e) * (!b + c + d + !e) * (a + !b + c) * (!e + f)"
         self.clauses = expression.split("*")
-
+        self.values = [1,1,1,1,1,1]
         self.literals = []
+
+
         for character in expression:
             if character not in self.symbols:
                 self.literals.append(character)
                 self.literals = list(set(self.literals))
                 self.literals.sort()
+            
+        for character in self.literals:
+            for value in self.values:
+                character = value
+            
+                
+
                
 
         print (self.literals)
