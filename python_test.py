@@ -4,28 +4,32 @@ class Expression(object):
     def __init__(self, expression):
         self.symbols = ["!", "+", "*", "(", ")", " "]
         self.clauses = expression.split("*")
-        self.values = [0,1,0,0,1,1]
+        self.values = ['0','1','0','0','1','1']
         self.variables = []
         self.literals = []
 
-        for character in expression:
+        #putting each unique character in a list
+        for character in expression:            
             if character not in self.symbols:
                 self.variables.append(character)
                 self.variables = list(set(self.variables))
-                self.variables.sort()
+                self.variables.sort()            
         print (self.variables)
 
+        #mapping each unique character with a value
         mappedLiteral = list(zip(self.variables, self.values))
-
         print (mappedLiteral)
 
-    
-
-
+        #taking the characters in the expression and replacing them with their value
+        ex = expression
+        for lit in mappedLiteral:
+            ex = ex.replace(lit[0], lit[1])
+        print(ex) 
         
 
+            
 
-    #presto = [a,b,c,1,0,1]
+
 #class for reading from a file
 class Parser(object):
     def __init__(self, filename):
@@ -35,4 +39,6 @@ class Parser(object):
 
 p = Parser("algorithm.txt")
 for line in p.lines:
-    e = Expression(line)
+    e = Expression(line)    
+
+
