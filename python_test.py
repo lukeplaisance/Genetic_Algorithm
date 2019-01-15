@@ -17,12 +17,12 @@ class Expression(object):
         print (self.variables)
 
         #mapping each unique character with a value
-        mappedLiteral = list(zip(self.variables, self.values))
-        print (mappedLiteral)
+        mappedVariable = list(zip(self.variables, self.values))
+        print (mappedVariable)
 
         #taking the characters in the expression and replacing them with their value
         ex = expression
-        for lit in mappedLiteral:
+        for lit in mappedVariable:
             ex = ex.replace(lit[0], lit[1])
 
         #replacing the symbols with operators
