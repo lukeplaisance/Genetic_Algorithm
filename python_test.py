@@ -46,15 +46,34 @@ p = Parser("algorithm.txt")
 for line in p.lines:
     e = Expression(line)    
 
+#gives each value in the gene a chance to flip it value
+def mutate(gene):
+    mutated_gene = []
+    mutation_chance = .25
 
-#function that crosses over parts of the previous populations to make a new one
-def cross_over(geneOne, geneTwo):
-    pivot = int(random.randint(1, 3))
-    return (geneOne[:pivot] + geneTwo[pivot:], geneTwo[:pivot] + geneOne[pivot:])
+    for i in gene:
+        if random.random() < mutation_chance:
+            if i == 1:
+                mutated_gene.append(0)
+            else:
+                mutated_gene.append(1)
+        else:
+            mutated_gene.append(i)
+
+    return mutated_gene
+
+#function that crosses over the ends of each gene to make a child gene
+def cross_over(geneOne, geneTwo, pivot):
+    newGene = (geneOne[pivot:] + geneTwo[:pivot])
+    return (newGene)
+
+
 
 
 a = [0,1,1,0,1,0]
 b = [1,1,0,0,0,1]
-cross = cross_over(a, b)
+cross = cross_over(a, b, 3)
 print(cross)
+mut = mutate(cross)
+print(mut)
 
