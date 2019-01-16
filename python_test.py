@@ -1,3 +1,4 @@
+import random
 
 #class for holding the symbols, literals, and clauses for the expressions
 class Expression(object):
@@ -28,15 +29,10 @@ class Expression(object):
         #replacing the symbols with operators
         for character in ex:
             ex = ex.replace(self.symbols[0], "not ")
-            ex = ex.replace(self.symbols[1], "or ")
+            ex = ex.replace(self.symbols[1], "or")
             ex = ex.replace(self.symbols[2], "and")
         print(eval(ex))
         print(ex)
-
-
-expr = Expression("(!a + c) * (!a + c + !e) * (!b + c + d + !e) * (a + !b + c) * (!e + f)")
-
-
 
 
 #class for reading from a file
@@ -52,16 +48,13 @@ for line in p.lines:
 
 
 #function that crosses over parts of the previous populations to make a new one
-def cross_over(self, other, pivot):
-    other = ['1','1','0','0','1','1']
-    newGene = []
-    i = 0
-    for item in self.values:
-        newGene.append(item)
-        i += 1
-        if i == pivot:
-            break
-    for x in range(pivot, other.__len__()):
-        newGene.append(other.index[x])
-    print(newGene)
+def cross_over(geneOne, geneTwo):
+    pivot = int(random.randint(1, 3))
+    return (geneOne[:pivot] + geneTwo[pivot:], geneTwo[:pivot] + geneOne[pivot:])
+
+
+a = [0,1,1,0,1,0]
+b = [1,1,0,0,0,1]
+cross = cross_over(a, b)
+print(cross)
 
