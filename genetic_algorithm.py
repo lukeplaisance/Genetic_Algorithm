@@ -26,7 +26,7 @@ class Expression(object):
         for lit in mappedVariable:
             ex = ex.replace(lit[0], lit[1])
 
-        #replacing the symbols with operators
+        #replacing the symbols with operators, then evaluates the expression
         for character in ex:
             ex = ex.replace(self.symbols[0], "not ")
             ex = ex.replace(self.symbols[1], "or")
