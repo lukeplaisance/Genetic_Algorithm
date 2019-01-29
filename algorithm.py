@@ -6,8 +6,8 @@ import random
 class Parser(object):
     def __init__(self, filename):
         self.file = filename        
-        self.open_file = open(self.file, "r")
-        self.lines = self.open_file.readlines()
+        self.read_file = open(self.file, "r")
+        self.lines = self.read_file.readlines()
 
 
 class Genetic_Algorithm(object):
@@ -19,13 +19,16 @@ class Genetic_Algorithm(object):
         self.values = []
         self.info_file = open("info_file.txt", "w")
 
-        #reads the expression
-        for line in self.parser.lines:
-            self.expression = Expression(line)
-
     def show_info(self):
+        self.info_file.write('\n')
         self.info_file.write('Finished?:' + str(self.is_finished) + '\n')
 
+
+    #determines the fitness score
+    def determine_fitness(self):
+        for gene in self.population:
+            if self.genes[value] == 1:
+                self.fitness += 1
 
     #generates the population
     def gen_population(self, size):
@@ -37,7 +40,26 @@ class Genetic_Algorithm(object):
         return population
 
     def run_algorithm(self, expression):
-        while 
+        gene_count = len(expression.get_variables())
+        self.population = self.gen_population(gene_count)
+
+        while not self.is_finished:
+            print ('Generation: ' + str(self.generation))
+            if(self.generation >= 500):
+                self.show_info()
+                return
+
+def main():
+    a = Genetic_Algorithm()
+    p = Parser("algorithm.txt")
+    #reads the expression
+    for line in p.lines:
+        e = Expression(line)
+
+    a.run_algorithm(e)
+    a.info_file.close()
+    print ("finished")
+main()
 
 
         
