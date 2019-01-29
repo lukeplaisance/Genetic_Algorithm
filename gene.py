@@ -13,11 +13,13 @@ class Gene():
             self.genes[i] = random.randint(0,1)
             self.info += str(self.genes[i])
 
-    #determines the fitness score
-    def determine_fitness(self):
-        for value in self.genes:
-            if self.genes[value] == 1:
-                self.fitness += 1
+    def get_info(self):
+        return self.info
+    
+    def print_info(self):
+        print(self.info)
+
+    
 
     #gives each value in the gene a chance to flip it value
     def mutate(self, gene):
