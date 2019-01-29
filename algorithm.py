@@ -23,13 +23,6 @@ class Genetic_Algorithm(object):
         self.info_file.write('\n')
         self.info_file.write('Finished?:' + str(self.is_finished) + '\n')
 
-
-    #determines the fitness score
-    def determine_fitness(self):
-        for gene in self.population:
-            if self.genes[value] == 1:
-                self.fitness += 1
-
     #generates the population
     def gen_population(self, size):
         population = []
@@ -38,6 +31,11 @@ class Genetic_Algorithm(object):
             g.gen_gene(size)
             population.append(g)
         return population
+
+    #determines the fitness score
+    def determine_fitness(self, expression):
+        for gene in self.population:
+            #the expression is assigned the original expression
 
     def run_algorithm(self, expression):
         gene_count = len(expression.get_variables())

@@ -47,6 +47,13 @@ class Expression(object):
         test = bool(eval(self.new_expression))
         print("result : " + str(test))
 
+    def inject_expression(self, expression):
+        expression = Expression(self.expression)
+        expression.get_variables()
+        expression.gen_values(expression)
+        expression.map_variables()
+        expression.replace_symbols()
+
 def main():
     e = Expression("(a) * (b) * (c) * (!d)")
     e.get_variables()
