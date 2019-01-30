@@ -15,12 +15,14 @@ class Expression(object):
         #putting each unique character in a list
         for character in self.expression:            
             if character not in self.symbols:
+                if character == "\n":
+                    continue
                 self.variables.append(character)
                 self.variables = list(set(self.variables))
                 self.variables.sort()            
         print (self.variables)
 
-    def gen_values(self, expression):
+    def gen_values(self):
         for i in self.variables:
             self.values.append(random.randint(0,1))
         return self.values
@@ -43,23 +45,19 @@ class Expression(object):
             self.new_expression = self.new_expression.replace(self.symbols[2], "and")
         print(self.new_expression)
 
-    def print_results(self):
-        test = bool(eval(self.new_expression))
-        print("result : " + str(test))
+    def print_results(self):        
+        print("result : " + str(bool(eval(self.new_expression))))
 
-    def inject_expression(self, expression):
-        expression = Expression(self.expression)
-        expression.get_variables()
-        expression.gen_values(expression)
-        expression.map_variables()
-        expression.replace_symbols()
+    def test_results(self):
+        return bool(eval(self.new_expression))
+
 
 def main():
-    e = Expression("(a) * (b) * (c) * (!d)")
+    e = Expression("(a + c) * (b + d) * (c + a) * (!d + a)")
     e.get_variables()
-    e.gen_values(e)
+    e.gen_values()
     e.map_variables()
     e.replace_symbols()
     e.print_results()
 
-main()
+#main()
