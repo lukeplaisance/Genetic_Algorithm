@@ -3,6 +3,7 @@ import random
 class Gene():
     def __init__(self, info):
         self.info = str(info)
+        self.fitness = 0
 
     #generates a gene with randomly with numbers between 0 and 1
     def gen_gene(self, size):
@@ -16,7 +17,5 @@ class Gene():
     
     def print_info(self):
         print(self.info)
-
-  
 
     

@@ -27,6 +27,9 @@ class Expression(object):
             self.values.append(random.randint(0,1))
         return self.values
 
+    def get_mapped_variables(self):
+        return self.mappedVariable
+
     def map_variables(self):
         #mapping each unique character with a value
         self.mappedVariable = list(zip(self.variables, self.values))

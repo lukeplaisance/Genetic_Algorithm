@@ -4,7 +4,7 @@ from gene import Gene
 #gives each value in the gene a chance to flip it value
 def mutate(gene):
     mutated_gene = []
-    mutation_chance = .25
+    mutation_chance = 25
 
     for i in gene.info:
         if random.random() < mutation_chance:
@@ -40,3 +40,11 @@ def select_parent(population):
     p2 = population[rand_parent]
     new_population = [p1, p2]
     return new_population
+
+def s_determine_fitness(clauses):
+    result = 0
+    for c in clauses:
+        result += eval(c)
+
+    return result
+
