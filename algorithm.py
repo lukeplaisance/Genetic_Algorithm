@@ -25,8 +25,8 @@ class Genetic_Algorithm(object):
     def show_info(self):
         self.info_file.write('\n')
         self.info_file.write('Finished?: ' + str(self.is_finished) + '\n')
-        for gene in self.scored_population:
-            info = (gene[0].get_info(), str(gene[1]), 'Generation: ' + str(self.generation))
+        for gene in self.population:
+            info = (gene.get_info(), 'Fitness Score: ' + str(gene.fitness), 'Generation: ' + str(self.generation))
             self.info_file.write(str(info) + '\n')
 
     #generates the population
@@ -40,14 +40,11 @@ class Genetic_Algorithm(object):
 
     def determine_fitness(self):
         for gene in self.population:
-            gene_length = len(gene.get_info())
+    
             clauses = self._expression.new_expression.split("and")
             gene.fitness = s_determine_fitness(clauses)
 
-        self.scored_population.append(gene.fitness)
-        self.population = []
-        for score in self.scored_population:
-            self.population.append(score)
+        self.population.append(gene)
 
                     
     def determine_solution(self):
@@ -70,7 +67,7 @@ class Genetic_Algorithm(object):
         #while the algorithm is not finished make another generation until you reach 100
         while not self.is_finished:
             print ('Generation: ' + str(self.generation))
-            if(self.generation >= 500):
+            if(self.generation >= 100):
                 self.show_info()
                 return
            
@@ -82,6 +79,7 @@ class Genetic_Algorithm(object):
             #if it is finished, print out the solution
             if(self.is_finished):
                 print("Solution: " + self.population[0].get_info())
+                self.info_file.write("Solution: " + self.population[0].get_info())
                 self.show_info()
                 return
 

@@ -39,6 +39,7 @@ def select_parent(population):
     rand_parent = random.randint(1, len(population) - 1)
     p2 = population[rand_parent]
     new_population = [p1, p2]
+
     return new_population
 
 def s_determine_fitness(clauses):
